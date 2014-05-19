@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+
+	<!-- <bean id="loanIdentificationNumberCode" -->
+	<!-- class="es.unileon.ulebank.assets.handler.LoanIdentificationNumberCode"> -->
+	<!-- <constructor-arg type="java.lang.String" value="LN" /> -->
+	<!-- <constructor-arg type="java.lang.String" value="ES" /> -->
+	<!-- </bean> -->
+	
+	
+	<bean id="amortizedCommission" class="es.unileon.ulebank.fees.LoanCommission">
+		<constructor-arg type="double" value="1000"></constructor-arg>
+		<constructor-arg type="boolean" value="false"></constructor-arg>
+	</bean>
+	
+	<bean id="handlerLoan"
+		class="es.unileon.ulebank.assets.handler.FinancialProductHandler">
+		<!-- <constructor-arg ref="loanIdentificationNumberCode"></constructor-arg> -->
+		<constructor-arg type="java.lang.String" value="LN"></constructor-arg>
+		<constructor-arg type="java.lang.String" value="ES"></constructor-arg>
+	</bean>
+
+	<bean id="manager" class="es.unileon.ulebank.transacionManager.TransactionManager"></bean>
+
+	<bean id="bankHandler" class="es.unileon.ulebank.handler.GenericHandler">
+		<constructor-arg type="java.lang.String" value="1234" />
+	</bean>
+
+	<bean id="bank" class="es.unileon.ulebank.bank.Bank">
+		<constructor-arg
+			type="es.unileon.ulebank.transacionManager.TransactionManager" ref="manager" />
+		<constructor-arg type="es.unileon.ulebank.handler.Handler"
+			ref="bankHandler" />
+	</bean>
+
+	<bean id="office" class="es.unileon.ulebank.office.Office">
+		<constructor-arg type="es.unileon.ulebank.handler.Handler"
+			ref="bankHandler" />
+		<constructor-arg type="es.unileon.ulebank.bank.Bank"
+			ref="bank" />
+	</bean>
+
+	<bean id="account" class="es.unileon.ulebank.account.Account">
+		<constructor-arg type="es.unileon.ulebank.office.Office"
+			ref="office"></constructor-arg>
+		<constructor-arg type="es.unileon.ulebank.bank.Bank"
+			ref="bank"></constructor-arg>
+		<constructor-arg type="java.lang.String" value="0000000000"></constructor-arg>
+	</bean>
+
+	<bean id="authorizedHandler1" class="es.unileon.ulebank.handler.GenericHandler">
+		<constructor-arg type="java.lang.String" value="Antonio" />
+	</bean>
+
+	<bean id="authorized1" class="es.unileon.ulebank.client.Client">
+		<constructor-arg type="es.unileon.ulebank.handler.Handler"
+			ref="authorizedHandler1" />
+	</bean>
+
+	<bean id="loan" class="es.unileon.ulebank.assets.Loan" scope="singleton">
+		<constructor-arg type="es.unileon.ulebank.assets.handler.Handler"
+			ref="handlerLoan" />
+		<constructor-arg type="double" value="20000" />
+		<constructor-arg type="double" value="0.20" />
+		<constructor-arg type="es.unileon.ulebank.assets.support.PaymentPeriod"
+			value="MONTHLY" />
+		<constructor-arg type="int" value="24" />
+		<constructor-arg type="es.unileon.ulebank.account.Account"
+			ref="account" />
+			
+		<property name="amortizedCommission" ref="amortizedCommission"></property>
+	</bean>
+
+	<bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basename" value="messages" />
+	</bean>
+
+	<!-- Scans the classpath of this application for @Components to deploy as 
+		beans -->
+	<context:component-scan base-package="es.unileon.springapp.web" />
+
+	<!-- Configures the @Controller programming model -->
+	<mvc:annotation-driven />
+
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.JstlView"></property>
+		<property name="prefix" value="/WEB-INF/views/"></property>
+		<property name="suffix" value=".jsp"></property>
+	</bean>
+
+</beans>
