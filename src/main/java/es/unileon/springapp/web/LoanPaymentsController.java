@@ -43,8 +43,8 @@ public class LoanPaymentsController {
 			Transaction transaction1 = new GenericTransaction(2000000, new Date(
 					System.currentTimeMillis()), "Salary");
 			transaction1.setEffectiveDate(new Date(System.currentTimeMillis()));
-
-			this.account.doTransaction(transaction1);
+			if(this.account != null)
+				this.account.doTransaction(transaction1);
 		} catch (TransactionException e) {
 			e.printStackTrace();
 		}
