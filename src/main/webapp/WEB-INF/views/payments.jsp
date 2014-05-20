@@ -4,10 +4,10 @@
 
 <head>
 <link rel="stylesheet" type="text/css" href="estilos.css" />
-<title>Loan payments</title>
+<title><fmt:message key="loanPayments"/></title>
 </head>
 <body>
-	<h3>Payments</h3>
+	<h3><fmt:message key="payments"/></h3>
 	<c:forEach items="${model.payments}" var="payment">
 		<table>
 			<tr>
@@ -19,6 +19,6 @@
 			<tr>
 		</table>
 	</c:forEach>
-	<a href="<c:url value="liquidateLoan.htm"/>">Go to amortize</a>
+	<a href="<c:url value="liquidateLoan.htm"/>"><fmt:message key="goToAmortize"/></a>
 </body>
 </html>

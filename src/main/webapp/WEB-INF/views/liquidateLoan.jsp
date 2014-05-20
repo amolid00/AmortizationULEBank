@@ -3,10 +3,10 @@
 
 <html>
 <head>
-<title>Liquidate loan</title>
+<title><fmt:message key="title"/></title>
 </head>
 <body>
-	<h1>Liquidate loan</h1>
+	<h1><fmt:message key="title"/></h1>
 	<form:form method="post" commandName="liquidateQuantity">
 		<table width="95%" bgcolor="f8f8ff" border="0" cellspacing="0"
 			cellpadding="5">
@@ -17,7 +17,7 @@
 <!-- 			</tr> -->
 			
 			<tr>
-				<td align="right" width="20%">Quantity to pay:</td>
+				<td align="right" width="20%"><fmt:message key="quantitytoPay"/></td>
 				<td width="20%"><form:input path="quantity" /></td>
 			</tr>
 			
@@ -25,6 +25,6 @@
 		<br>
 		<input type="submit" value="Execute">
 	</form:form>
-	<a href="<c:url value="payments.htm"/>">Go to payments</a>
+	<a href="<c:url value="payments.htm"/>"><fmt:message key="goToPayments"/></a>
 </body>
 </html>
