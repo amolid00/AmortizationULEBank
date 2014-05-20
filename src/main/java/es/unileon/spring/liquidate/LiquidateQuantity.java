@@ -8,8 +8,8 @@ public class LiquidateQuantity {
     @Min(0)
     private double quantity;
     
-    @Min(1)
-    private int numberFees;
+//    @Min(1)
+//    private int numberFees;
     
     public double getQuantity() {
 		return quantity;
@@ -19,13 +19,13 @@ public class LiquidateQuantity {
 		this.quantity = quantity;
 	}
 
-	public int getNumberFees() {
-		return numberFees;
-	}
-
-	public void setNumberFees(int numberFees) {
-		this.numberFees = numberFees;
-	}
+//	public int getNumberFees() {
+//		return numberFees;
+//	}
+//
+//	public void setNumberFees(int numberFees) {
+//		this.numberFees = numberFees;
+//	}
     
     
 

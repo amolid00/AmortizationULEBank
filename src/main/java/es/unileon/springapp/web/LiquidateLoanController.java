@@ -52,10 +52,10 @@ public class LiquidateLoanController {
 		}
 		
 		double quantityLiquidate = liquidateQuantity.getQuantity();
-		int numberFees = liquidateQuantity.getNumberFees();
+//		int numberFees = liquidateQuantity.getNumberFees();
 		
 		try {
-			this.loan.setAmortizationTime(numberFees);
+//			this.loan.setAmortizationTime(numberFees);
 			this.loan.amortize(quantityLiquidate);
 		} catch (LoanException e) {
 		}

@@ -11,10 +11,10 @@
 		<table width="95%" bgcolor="f8f8ff" border="0" cellspacing="0"
 			cellpadding="5">
 			
-			<tr>
-				<td align="right" width="20%">Number of fees:</td>
-				<td width="20%"><form:input path="numberFees" /></td>
-			</tr>
+<!-- 			<tr> -->
+<!-- 				<td align="right" width="20%">Number of fees:</td> -->
+<%-- 				<td width="20%"><form:input path="numberFees" /></td> --%>
+<!-- 			</tr> -->
 			
 			<tr>
 				<td align="right" width="20%">Quantity to pay:</td>
